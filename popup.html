@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productivity Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fdf6fd 0%, #f6fcff 100%);
+      min-width: 340px;
+      min-height: 420px;
+      margin: 0;
+      color: #3a3a4d;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      animation: fadeIn 0.7s ease;
+    }
+    .dark, .dark body, body.dark {
+      background: #18181b !important;
+      color: #f5f5f5 !important;
+    }
+    .dark .container {
+      background: none;
+    }
+    .dark .header h1 {
+      color: #f5f5f5;
+    }
+    .dark .header p {
+      color: #b0b0b0;
+    }
+    .dark .current-tab {
+      background: #232323;
+      border: 1px solid #2d2d2d;
+      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.25);
+    }
+    .dark .domain {
+      color: #f5f5f5;
+    }
+    .dark .productivity-badge {
+      background: #232323;
+      color: #e0e0e0;
+      border: 1px solid #2d2d2d;
+      box-shadow: 0 1px 4px 0 rgba(0,0,0,0.15);
+    }
+    .dark .productive { background: #444 !important; color: #e0e0e0 !important; }
+    .dark .unproductive { background: #2d2d2d !important; color: #e0e0e0 !important; }
+    .dark .neutral { background: #18181b !important; color: #b0b0b0 !important; }
+    .dark .timer {
+      color: #f5f5f5;
+    }
+    .dark .stat-card {
+      background: #242424;
+      border: 1px solid #2d2d2d;
+      box-shadow: 0 1px 8px 0 rgba(0,0,0,0.15);
+    }
+    .dark .stat-value {
+      color: #f5f5f5;
+    }
+    .dark .stat-label {
+      color: #b0b0b0;
+    }
+    .dark .btn, .dark .btn-secondary {
+      background: #232323;
+      color: #f5f5f5;
+      border: 1px solid #2d2d2d;
+      box-shadow: 0 1px 8px 0 rgba(0,0,0,0.15);
+    }
+    .dark .btn:hover, .dark .btn-secondary:hover {
+      background: #2d2d2d;
+    }
+    .dark .productivity-badge, .dark .productive, .dark .unproductive, .dark .neutral {
+      background: #232323 !important;
+      color: #e0e0e0 !important;
+      border: 1px solid #2d2d2d !important;
+    }
+    .dark .theme-toggle {
+      color: #f5f5f5;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .container {
+      width: 100%;
+      max-width: 340px;
+      padding: 1.5rem 1.2rem 1.2rem 1.2rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+    .header h1 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+      letter-spacing: 0.01em;
+      color: #3a3a4d;
+    }
+    .header p {
+      font-size: 0.95rem;
+      font-weight: 400;
+      opacity: 0.85;
+      color: #5a5a6e;
+    }
+    .current-tab {
+      background: #fff;
+      border-radius: 1.2rem;
+      padding: 1rem 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 2px 12px 0 rgba(180, 160, 220, 0.07);
+      gap: 0.5rem;
+      border: 1px solid #f0eafc;
+    }
+    .tab-info {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      width: 100%;
+      justify-content: center;
+    }
+    .favicon {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background: #fff;
+    }
+    .domain {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #3a3a4d;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 140px;
+      white-space: nowrap;
+    }
+    .productivity-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.2rem 0.9rem;
+      border-radius: 999px;
+      margin-left: 0.5rem;
+      letter-spacing: 0.04em;
+      display: inline-block;
+      background: #f9f7fd;
+      color: #5a5a6e;
+      box-shadow: 0 1px 4px 0 rgba(180, 160, 220, 0.05);
+      border: 1px solid #f0eafc;
+      transition: background 0.3s, color 0.3s;
+    }
+    .productive { background: #b8f2e6 !important; color: #3a3a4d !important; border: none; }
+    .unproductive { background: #ffd6e0 !important; color: #3a3a4d !important; border: none; }
+    .neutral { background: #f6f6f6 !important; color: #5a5a6e !important; border: none; }
+    .timer {
+      font-size: 2.2rem;
+      font-weight: 700;
+      font-family: 'Inter', monospace;
+      margin: 0.2rem 0 0.5rem 0;
+      letter-spacing: 0.04em;
+      color: #3a3a4d;
+      animation: timerPulse 1.2s infinite alternate;
+    }
+    @keyframes timerPulse {
+      from { opacity: 0.8; }
+      to { opacity: 1; }
+    }
+    .stats {
+      display: flex;
+      gap: 1rem;
+      width: 100%;
+      justify-content: space-between;
+    }
+    .stat-card {
+      flex: 1;
+      background: #f9f7fd;
+      border-radius: 1rem;
+      padding: 1rem 0.5rem;
+      text-align: center;
+      box-shadow: 0 1px 8px 0 rgba(180, 160, 220, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      border: 1px solid #f0eafc;
+    }
+    .stat-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.1rem;
+      color: #3a3a4d;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      color: #a0a0b8;
+    }
+    .actions {
+      display: flex;
+      gap: 0.7rem;
+      width: 100%;
+    }
+    .btn {
+      flex: 1;
+      padding: 0.7rem 0;
+      border: none;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #dbeafe;
+      color: #3a3a4d;
+      box-shadow: 0 1px 8px 0 rgba(180, 160, 220, 0.05);
+      transition: background 0.3s, transform 0.2s;
+    }
+    .btn:hover {
+      background: #c7e0fa;
+      transform: scale(1.04);
+    }
+    .btn-primary { background: #dbeafe; color: #3a3a4d; }
+    .btn-primary:hover { background: #c7e0fa; }
+    .btn-secondary { background: #fbe7ff; color: #3a3a4d; }
+    .btn-secondary:hover { background: #f9f7fd; }
+    .theme-toggle {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.1rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #a0a0b8;
+      font-size: 1.2rem;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .theme-toggle:hover { opacity: 1; }
+    @media (max-width: 400px) {
+      .container { padding: 1rem 0.3rem; }
+      .header h1 { font-size: 1.1rem; }
+      .timer { font-size: 1.5rem; }
+    }
+    .fade-in { animation: fadeIn 0.7s ease; }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" id="theme-toggle" title="Switch Theme">🌙</button>
+  <div class="container fade-in">
+    <div class="header">
+      <h1>Productivity Tracker</h1>
+      <p>Track your time, boost your productivity</p>
+    </div>
+    <div class="current-tab">
+      <div class="tab-info">
+        <img id="favicon" class="favicon" src="" alt="">
+        <span id="domain" class="domain">Loading...</span>
+        <span id="productivity-badge" class="productivity-badge">...</span>
+      </div>
+      <div id="timer" class="timer">00:00</div>
+    </div>
+    <div class="stats">
+      <div class="stat-card">
+        <div id="today-productive" class="stat-value">0m</div>
+        <div class="stat-label">Productive Today</div>
+      </div>
+      <div class="stat-card">
+        <div id="today-unproductive" class="stat-value">0m</div>
+        <div class="stat-label">Unproductive Today</div>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="settings-btn" class="btn btn-secondary">Settings</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ece9f7" />
+    <meta name="description" content="Productivity Time Tracker Dashboard" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Productivity Tracker Dashboard</title>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #ece9f7 0%, #f8f9fb 100%);
+        min-height: 100vh;
+        margin: 0;
+        color: #333;
+        animation: fadeIn 0.7s ease;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .theme-toggle {
+        position: fixed;
+        top: 1.2rem;
+        right: 1.2rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #888;
+        font-size: 1.3rem;
+        opacity: 0.7;
+        z-index: 1000;
+        transition: opacity 0.2s;
+      }
+      .theme-toggle:hover { opacity: 1; }
+    </style>
+  </head>
+  <body>
+    <button class="theme-toggle" id="theme-toggle" title="Switch Theme">🌙</button>
+    <div id="root"></div>
+  </body>
+</html>
