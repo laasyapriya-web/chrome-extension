@@ -1,5 +1,15 @@
 # Chrome Extension Project
+COMPANY: CODTECH IT SOLUTIONS
 
+NAME :GURAJALA LAASYAPRIYA
+
+INTERN ID: CT06DF2182
+
+DOMAIN: FULL STACK WEB DEVELOPMENT
+
+DURATION: 6 WEEKS
+
+MENTOR: NEELA SANTOSH
 ## Overview
 This project is a Chrome extension with a backend and frontend, designed to track and analyze productivity through time logs. It features a dashboard, analytics, and settings, and uses a Node.js/Express backend with a React frontend.
 
@@ -74,8 +84,4 @@ chrome extension/
 - View analytics and productivity charts in the dashboard.
 - Adjust settings as needed.
 
-## Contributing
-Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-[MIT](LICENSE)
+##**OUTPUT**
