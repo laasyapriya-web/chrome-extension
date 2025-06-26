@@ -85,4 +85,5 @@ chrome extension/
 - Adjust settings as needed.
 
 ##**OUTPUT**
+
 ![Image](https://github.com/user-attachments/assets/3e3ef774-9cd3-41a1-80c0-c6aa3f9c9ef6)
